@@ -65,7 +65,27 @@ const images = [
     },
     ];
 
-const markup = images.map(image => {
+// const markup = images.map(image => {
+//   return `
+//   <li class="gallery-item">
+//       <a class="gallery-link" href="${image.original}">     
+//         <img
+//         class="gallery-image"
+//         src="${image.preview}"
+//         data-source="${image.original}"
+//         alt="${image.description}"
+//         />
+//         </a>
+//         </li>
+//   `;
+// }).join('');
+
+
+const container = document.querySelector(".gallery");
+container.insertAdjacentHTML('beforeend', generatedImgMarkup(images));
+
+function generatedImgMarkup (images) {
+return images.map(image => {
   return `
   <li class="gallery-item">
       <a class="gallery-link" href="${image.original}">     
@@ -79,38 +99,25 @@ const markup = images.map(image => {
         </li>
   `;
 }).join('');
-// console.log("markup  markup:", markup)
+};
 
-
-
-const container = document.querySelector(".gallery");
-container.insertAdjacentHTML('beforeend', markup);
-
-container.style.top = "24px";
+container.style.margin = "auto";
 container.style.paddingLeft = "0px";
-// container.style.left = "156px";
 container.style.maxWidth = "1128px";
-container.style.top = "24px";
 container.style.display = "flex";
 container.style.flexWrap = "wrap";
 container.style.gap = "24px";
 container.style.justifyContent = "center";
-container.style.objectFit = "cover";
 container.style.listStyleType = "none";
 
 // const element = querySelector(".gallery-item");
 
 const galImages = document.querySelectorAll(".gallery-image");
 galImages.forEach(image => {
-  image.style.margin = "0 auto";
   image.style.objectFit = "cover";
   image.style.width = "360px";
   image.style.height = "200px";
-  // image.style.top: 24px;
-  // image.style.left: 540px;
-  // image.style.gap: 0px;
-  // image.style.opacity: 0px;
-});
+  });
 
 
 
