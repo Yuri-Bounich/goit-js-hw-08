@@ -7,3 +7,4 @@ js/classes.js
 js/dom.js
 js/dom-events.js
 js/dom-submit.js
+js/event.js
