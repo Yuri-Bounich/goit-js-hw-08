@@ -110,8 +110,6 @@ container.style.gap = "24px";
 container.style.justifyContent = "center";
 container.style.listStyleType = "none";
 
-// const element = querySelector(".gallery-item");
-
 const galImages = document.querySelectorAll(".gallery-image");
 galImages.forEach(image => {
   image.style.objectFit = "cover";
@@ -119,48 +117,34 @@ galImages.forEach(image => {
   image.style.height = "200px";
   });
 
+const links = document.querySelectorAll('a[href]');
 
+// Додаємо обробник подій для кожного посилання
+links.forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // Скасовуємо стандартну поведінку (завантаження файлу)
+    console.log('Download prevented');
+  });
+});
 
+container.addEventListener("click", onImgClick);
 
-
-
-
-// function generateProductsMarkup(products) {
-//   return products
-//     .map(product => {
-//       return `
-//         <li class="item js-product-item" data-id="${product.id}">
-//           <img
-//             src="${product.img}"
-//             alt="${product.name}"
-//           />
-//           <h3>${product.name}</h3>
-//           <p>Price: <b>${product.price}</b> uah</p>
-//         </li>
-//         `;
-//     })
-//     .join('');
-// }
-
-
-
-// const markup = images.map((image) => `<img class="img-gallery" src="${image.url}" alt="${image.alt}" width="600" height="500" />`)
-//   .join("");
-
-// listEl.innerHTML = markup;
-
-// const imagesEl = document.querySelectorAll(".img-gallery");
-// imagesEl.forEach(img => {
-//   img.style.objectFit = "cover";
-// });
+function onImgClick(event) {
+  if (event.target === event.currentTarget) {
+    console.log('Click on UL');
+    return;
+  }
+  // console.log(event.target);
+  // console.log(event.currentTarget);
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="1112" height="640"/>
+    `)
     
-//     <li class="gallery-item">
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img
-//       class="gallery-image"
-//       src="small-image.jpg"
-//       data-source="large-image.jpg"
-//       alt="Image description"
-//     />
-//   </a>
-// </li>
+    instance.show()
+    
+    // console.log(basicLightbox)
+
+}
+
+
+

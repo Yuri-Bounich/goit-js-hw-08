@@ -13,11 +13,10 @@ body {
   line-height: 1.5;
 }
 
-/* .gallery-item{
-  width: 1128px;
-  height: 200px;
-  
-  gap: 0px;
-  opacity: 0px;
-  
-} */
+.gallery-image {
+  transition: transform 0.3s ease; /* Додає плавний ефект переходу */
+}
+
+.gallery-image:hover {
+  transform: scale(1.05); /* Збільшує зображення при наведенні */
+}
